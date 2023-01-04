@@ -49,7 +49,7 @@ app.get(
 app.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/socialGoogle",
+    successRedirect: "https://reviews-app-blue.vercel.app/socialGoogle",
     failureRedirect: "/failed",
   })
 );
@@ -69,7 +69,7 @@ app.get("/social/auth/linkedIn", passport.authenticate("linkedin"));
 app.get(
   "/linkedin/callback",
   passport.authenticate("linkedin", {
-    successRedirect: "http://localhost:3000/socialLinkedIn",
+    successRedirect: "https://reviews-app-blue.vercel.app/socialLinkedIn",
     failureRedirect: "/failed",
   })
 );
@@ -86,7 +86,7 @@ app.get("/successLinkedIn", (req, res) => {
 /////////////////////////////////////////////////////
 
 app.get("/failed", (req, res) => {
-  res.redirect("http://localhost:3000");
+  res.redirect("https://reviews-app-blue.vercel.app");
 });
 app.get("/auth/logout", (req, res) => {
   req.session.destroy(function () {
