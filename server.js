@@ -10,9 +10,6 @@ const reviewRouter = require("./routes/reviewRouter");
 require("./config/google");
 require("./config/linkedIn");
 
-const PORT = process.env.PORT || 5000;
-const DB_URL = process.env.DB;
-
 let currentGoogleUser = null;
 let currentLinkedInUser = null;
 
@@ -104,11 +101,13 @@ app.use("/auth", authRouter);
 app.use("/reviews", reviewRouter);
 
 mongoose
-  .connect(DB_URL, {
+  .connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connect to DB successfully"))
   .catch((err) => console.log("Could not connect to DB", err));
 
-app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
+app.listen(process.env.PORT || 5000, () =>
+  console.log(`Server started on PORT = ${process.env.PORT || 5000}`)
+);
