@@ -48,21 +48,21 @@ class ReviewController {
       if (type === "new") {
         reviews = await ReviewModel.find()
           .sort({ createdAt: -1 })
-          .limit(20)
+          .limit(30)
           .populate("user")
           .exec();
       }
       if (type === "popular") {
         reviews = await ReviewModel.find()
           .sort({ likesCount: -1 })
-          .limit(20)
+          .limit(30)
           .populate("user")
           .exec();
       }
       if (type === "rating") {
         reviews = await ReviewModel.find()
           .sort({ authorRating: -1 })
-          .limit(20)
+          .limit(30)
           .populate("user")
           .exec();
       }
@@ -80,7 +80,7 @@ class ReviewController {
     try {
       const reviews = await ReviewModel.find()
         .sort({ createdAt: -1 })
-        .limit(20);
+        .limit(30);
       const tags = reviews.map((obj) => obj.tags).flat();
       const tagsSet = new Set(tags);
       const uniqTags = Array.from(tagsSet);
